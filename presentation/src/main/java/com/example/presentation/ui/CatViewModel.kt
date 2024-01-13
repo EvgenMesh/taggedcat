@@ -7,14 +7,14 @@ import com.example.domain.usecase.GetCatsUseCase
 import com.example.presentation.mapper.mapToUIModel
 import com.example.presentation.model.CatUIModel
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 
-class CatViewModule(private val getCatUseCase: GetCatsUseCase) : ViewModel() {
+class CatViewModel(private val getCatUseCase: GetCatsUseCase) : ViewModel() {
     sealed class UIState {
-        data class Success(val data: List<CatUIModel>) : UIState()
-        data class Error(val error: String?, val retryClick: () -> Unit) : UIState()
+        data class Success(val data: List<CatUIModel>, val retryClick: () -> Unit) : UIState()
+        data class Error(val retryClick: () -> Unit) : UIState()
         data object Loading : UIState()
     }
 
@@ -26,17 +26,20 @@ class CatViewModule(private val getCatUseCase: GetCatsUseCase) : ViewModel() {
     }
 
     private fun getData() {
-        viewModelScope.launch {
-            when (val result = getCatUseCase.invoke()) {
+        getCatUseCase.invoke().onEach {
+            when (it) {
                 is Result.Failure -> {
-                    _uiState.value = UIState.Error(result.error.message) {
+                    _uiState.value = UIState.Error {
                         getData()
                     }
                 }
+
                 is Result.Success -> {
-                    _uiState.value = UIState.Success(result.value.mapToUIModel())
+                    _uiState.value = UIState.Success(it.value.mapToUIModel()) {
+                        getData()
+                    }
                 }
             }
-        }
+        }.launchIn(viewModelScope)
     }
 }

@@ -1,7 +1,6 @@
 package com.example.data.utils
 
 import io.ktor.client.HttpClient
-import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.engine.mock.MockEngine
 import io.ktor.client.engine.mock.respond
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
@@ -35,12 +34,11 @@ object TestApiClient {
                     ignoreUnknownKeys = true
                     prettyPrint = true
                     isLenient = true
-                    explicitNulls = false
                 }
             )
         }
     }
-    val httpClientWithError = HttpClient(MockEngine { request ->
+    val httpClientWithError = HttpClient(MockEngine {
         respond(
             content = ByteReadChannel("Not implementing"),
             status = HttpStatusCode.InternalServerError,

@@ -14,3 +14,7 @@ compileKotlin {
         allWarningsAsErrors = true
     }
 }
+
+dependencies {
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
+}
