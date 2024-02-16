@@ -16,7 +16,7 @@
         android:theme="@style/Theme.Cats"
         tools:targetApi="31">
         <activity
-            android:name="com.example.presentation.ui.HomeActivity"
+            android:name="com.example.home.ui.HomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

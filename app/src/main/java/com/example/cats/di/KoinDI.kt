@@ -10,7 +10,7 @@ import com.example.data.db.MediaTypeConverter
 import com.example.data.repository.CatRepositoryImpl
 import com.example.domain.repository.CatRepository
 import com.example.domain.usecase.GetCatsUseCase
-import com.example.presentation.ui.CatViewModel
+import com.example.main.ui.CatViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
