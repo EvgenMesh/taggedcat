@@ -1,7 +1,7 @@
 plugins {
     id ("com.android.application")
     id ("org.jetbrains.kotlin.android")
-    id ("kotlin-kapt")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -38,11 +38,17 @@ dependencies {
     implementation(project(":presentation:home"))
     implementation(project(":data"))
     implementation(project(":domain"))
+    implementation(project(":core"))
 
-    implementation (libs.koin)
+    implementation(libs.androidx.core.fragment.ktx)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+
+    implementation(libs.dagger.runtime)
+    ksp(libs.dagger.compiler)
+
     implementation (libs.androidx.room.runtime)
     implementation (libs.androidx.room.ktx)
-    kapt (libs.androidx.room.compiler)
+    ksp (libs.androidx.room.compiler)
 
     implementation (libs.ktor.client.content.negotiation)
     implementation (libs.ktor.client.android)

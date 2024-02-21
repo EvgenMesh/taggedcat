@@ -1,16 +1,20 @@
 package com.example.cats
 
 import android.app.Application
-import com.example.cats.di.mainModule
-import org.koin.android.ext.koin.androidContext
-import org.koin.core.context.GlobalContext
+import com.example.cats.di.dagger.ApplicationComponent
+import com.example.cats.di.dagger.DaggerApplicationComponent
+import com.example.core.di.ComponentProvider
+import com.example.core.di.FeatureComponent
 
-class AppApplication : Application() {
+class AppApplication : Application(), ComponentProvider {
+
+    private lateinit var applicationComponent: ApplicationComponent
+
     override fun onCreate() {
         super.onCreate()
-        GlobalContext.startKoin {
-            androidContext(this@AppApplication)
-            modules(mainModule)
-        }
+        applicationComponent = DaggerApplicationComponent.builder().application(this).build()
     }
+
+    override fun featureComponent(): FeatureComponent = applicationComponent
+
 }

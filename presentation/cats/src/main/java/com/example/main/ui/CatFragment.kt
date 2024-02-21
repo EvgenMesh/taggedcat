@@ -1,29 +1,47 @@
 package com.example.main.ui
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.core.di.ComponentProvider
 import com.example.main.R
 import com.example.main.databinding.FragmentCatBinding
+import com.example.main.di.CatsDepsProvider
 import com.example.presentation.util.viewBinding
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import javax.inject.Inject
 
 class CatFragment : Fragment(R.layout.fragment_cat) {
 
     private val vb: FragmentCatBinding by viewBinding()
-    private val viewModel: CatViewModel by viewModel()
     private var infoView: Snackbar? = null
+
+    private lateinit var viewModel: CatViewModel
+
+    @Inject
+    lateinit var mainViewModelFactory: ViewModelProvider.Factory
+
+    override fun onAttach(context: Context) {
+        ((activity?.application as? ComponentProvider)?.featureComponent() as? CatsDepsProvider)?.injectCatsFragment(
+            this
+        )
+        super.onAttach(context)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        viewModel = ViewModelProvider(this, mainViewModelFactory)[CatViewModel::class.java]
+
         vb.catList.layoutManager =
             GridLayoutManager(requireContext(), resources.getInteger(R.integer.grid_column_count))
         vb.catList.adapter = CatsAdapter {

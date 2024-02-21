@@ -42,6 +42,7 @@ dependencies {
     implementation(libs.ktor.client.android)
     implementation(libs.ktor.serialization.kotlinx.json)
     implementation(libs.ktor.client.logging.jvm)
+    implementation(libs.javax)
 
     implementation(libs.androidx.room.ktx)
     implementation(libs.androidx.room.runtime)

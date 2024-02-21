@@ -12,8 +12,9 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.merge
+import javax.inject.Inject
 
-class CatRepositoryImpl(private val catsDAO: CatsDao, private val api: CatApi) : CatRepository {
+class CatRepositoryImpl @Inject constructor(private val catsDAO: CatsDao, private val api: CatApi) : CatRepository {
 
     override fun getData(): Flow<Result<List<Cat>>> {
         return merge(getDataFromDB(), getDataFromApi())

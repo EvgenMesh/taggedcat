@@ -7,7 +7,8 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
+import javax.inject.Inject
 
-class GetCatsUseCase(private val repository: CatRepository, private val dispatcher: CoroutineDispatcher = Dispatchers.IO) {
+class GetCatsUseCase @Inject constructor(private val repository: CatRepository, private val dispatcher: CoroutineDispatcher = Dispatchers.IO) {
     operator fun invoke(): Flow<Result<List<Cat>>> = repository.getData().flowOn(dispatcher)
 }

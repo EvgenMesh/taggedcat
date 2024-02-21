@@ -3,16 +3,17 @@ package com.example.main.ui
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.domain.usecase.GetCatsUseCase
-import com.example.main.model.CatUIModel
 import com.example.domain.entities.Result
+import com.example.domain.usecase.GetCatsUseCase
 import com.example.main.mapper.mapToUIModel
+import com.example.main.model.CatUIModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import javax.inject.Inject
 
-class CatViewModel(private val getCatUseCase: GetCatsUseCase) : ViewModel() {
+class CatViewModel @Inject constructor(private val getCatUseCase: GetCatsUseCase) : ViewModel() {
     sealed class UIState {
         data class Success(val data: List<CatUIModel>, val retryClick: () -> Unit) : UIState()
         data class Error(val retryClick: () -> Unit) : UIState()

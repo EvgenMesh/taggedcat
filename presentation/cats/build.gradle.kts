@@ -1,6 +1,7 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -37,16 +38,22 @@ android {
 dependencies {
     implementation(project(":presentation:uikit"))
     implementation(project(":domain"))
+    implementation(project(":core"))
 
-    implementation (libs.androidx.core.ktx)
-    implementation (libs.kotlinx.coroutines.core)
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.core.fragment.ktx)
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.javax)
+    implementation(libs.dagger.runtime)
+    ksp(libs.dagger.compiler)
 
-    implementation (libs.glide)
-    implementation (libs.androidx.lifecycle.viewmodel.ktx)
-    implementation (libs.androidx.appcompat)
-    implementation (libs.androidx.constraintlayout)
-    implementation (libs.google.android.material)
-    implementation (libs.koin)
+    implementation(libs.glide.runtime)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.constraintlayout)
+    implementation(libs.google.android.material)
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
