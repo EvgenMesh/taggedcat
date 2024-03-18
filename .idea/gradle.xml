@@ -16,6 +16,8 @@
             <option value="$PROJECT_DIR$/presentation" />
             <option value="$PROJECT_DIR$/presentation/cats" />
             <option value="$PROJECT_DIR$/presentation/home" />
+            <option value="$PROJECT_DIR$/presentation/menu" />
+            <option value="$PROJECT_DIR$/presentation/pokemons" />
             <option value="$PROJECT_DIR$/presentation/uikit" />
           </set>
         </option>

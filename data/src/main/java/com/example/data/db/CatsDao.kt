@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Upsert
 import com.example.data.db.model.CatTable
 import kotlinx.coroutines.flow.Flow
 
@@ -16,5 +17,8 @@ interface CatsDao {
     fun getCatsOrderedByDate(): Flow<List<CatTable>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(users: List<CatTable>)
+    suspend fun insertAll(cats: List<CatTable>)
+
+    @Upsert
+    suspend fun upsertAll(cats: List<CatTable>)
 }

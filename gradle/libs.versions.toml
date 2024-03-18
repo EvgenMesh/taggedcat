@@ -8,16 +8,17 @@ accompanist = "0.27.0"
 androidx-activity-compose = "1.6.1"
 androidx-compose-bom = "2022.11.00"
 androidx-core-ktx = "1.9.0"
-androidx-lifecycle-runtime-compose = "2.6.0-alpha03"
+androidx-lifecycle-runtime-compose = "2.7.0"
+androidx-lifecycle-viewmodel-compose = "2.5.1"
 androidx-navigation-compose = "2.5.3"
 coil = "2.2.2"
-compose-compiler = "1.3.2"
+compose-compiler = "1.5.10"
 coroutines = "1.6.4"
 espresso = "3.5.0"
 gradle-plugin = "7.2.2"
 androidBuildTools = "7.2.2"
-hilt = "2.44.1"
-hilt-navigation-compose = "1.0.0"
+hilt = "2.50"
+hilt-navigation-compose = "1.2.0"
 junit = "4.13.2"
 kotest = "5.5.4"
 kotlin = "1.7.20"
@@ -37,11 +38,16 @@ constraintlayout = "2.1.4"
 lifecycle-viewmodel-ktx = "2.5.1"
 appcompat_version = "1.4.2"
 glide = "4.16.0"
+glide_compose = "1.0.0-beta01"
 android-material = "1.11.0"
 dagger = "2.50"
 javax = "1"
 org-jetbrains-kotlin-jvm = "1.9.22"
 fragment-ktx = "1.3.6"
+compose = "1.6.3"
+compose_material = "1.2.1"
+gson = "2.10"
+work = "2.9.0"
 
 [libraries]
 kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
@@ -50,6 +56,7 @@ android-gradlePlugin = { module = "com.android.tools.build:gradle", version.ref 
 koin = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 
 glide-runtime = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
+glide-compose = { module = "com.github.bumptech.glide:compose", version.ref = "glide_compose" }
 glide-compiler = { module = "com.github.bumptech.glide:compiler", version.ref = "glide" }
 
 google-android-material = { module = "com.google.android.material:material", version.ref = "android-material" }
@@ -61,6 +68,7 @@ javax = { module = "javax.inject:javax.inject", version.ref = "javax" }
 androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "androidx-core-ktx" }
 androidx-core-fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "fragment-ktx" }
 androidx-lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidx-lifecycle-runtime-compose" }
+androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "androidx-lifecycle-viewmodel-compose" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity-compose" }
 androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
 androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle-viewmodel-ktx" }
@@ -80,9 +88,9 @@ androidx-test-espresso-core = { module = "androidx.test.espresso:espresso-core",
 androidx-test-espresso-idling-resource = { module = "androidx.test.espresso:espresso-idling-resource", version.ref = "espresso" }
 
 androidx-compose-bom = { module = "androidx.compose:compose-bom", version.ref = "androidx-compose-bom" }
-androidx-compose-material = { module = "androidx.compose.material:material" }
-androidx-compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
-androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
+androidx-compose-material = { module = "androidx.compose.material3:material3", version.ref = "compose_material" }
+androidx-compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
+androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
 androidx-compose-ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4" }
 androidx-compose-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest" }
 
@@ -122,6 +130,9 @@ accompanist-webview = { module = "com.google.accompanist:accompanist-webview", v
 accompanist-swiperefresh = { module = "com.google.accompanist:accompanist-swiperefresh", version.ref = "accompanist" }
 leakcanary-android = { module = "com.squareup.leakcanary:leakcanary-android", version.ref = "leakcanary" }
 ktlint-gradle = { module = "org.jlleitschuh.gradle:ktlint-gradle", version.ref = "ktlint" }
+gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
+androidx-work-runtime-ktx = { module = "androidx.work:work-runtime-ktx", version.ref = "work" }
+androidx-work-testing = { module = "androidx.work:work-testing", version.ref = "work" }
 
 [bundles]
 # Define bundles/groups of libraries
@@ -141,3 +152,4 @@ kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", versi
 android-library = { id = "com.android.library", version.ref = "gradle-plugin" }
 ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint-plugin" }
 org-jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "org-jetbrains-kotlin-jvm" }
+androidApplication = { id = "com.android.application", version.ref = "gradle-plugin" }

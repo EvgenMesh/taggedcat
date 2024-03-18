@@ -44,6 +44,10 @@ dependencies {
     implementation(libs.ktor.client.logging.jvm)
     implementation(libs.javax)
 
+    implementation(libs.google.android.material)
+    implementation(libs.gson)
+    implementation(libs.androidx.work.runtime.ktx)
+
     implementation(libs.androidx.room.ktx)
     implementation(libs.androidx.room.runtime)
     ksp(libs.androidx.room.compiler)

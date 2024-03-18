@@ -2,6 +2,7 @@ plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
     id("com.google.devtools.ksp")
+    alias(libs.plugins.hilt.android.plugin)
 }
 
 android {
@@ -32,6 +33,10 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
     }
 }
 
@@ -44,12 +49,22 @@ dependencies {
     implementation(libs.androidx.core.fragment.ktx)
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.javax)
-    implementation(libs.dagger.runtime)
-    ksp(libs.dagger.compiler)
+
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.android.compiler)
+
+    implementation(libs.hilt.navigation.compose)
 
     implementation(libs.glide.runtime)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
+
+    implementation(libs.androidx.lifecycle.runtime.compose)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.androidx.compose.material)
+    implementation(libs.androidx.compose.ui.tooling.preview)
+    implementation(libs.androidx.compose.ui.tooling)
+    implementation(libs.glide.compose)
 
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.constraintlayout)

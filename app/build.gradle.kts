@@ -1,7 +1,8 @@
 plugins {
     id ("com.android.application")
     id ("org.jetbrains.kotlin.android")
-    id("com.google.devtools.ksp")
+    id ("com.google.devtools.ksp")
+    alias(libs.plugins.hilt.android.plugin)
 }
 
 android {
@@ -31,10 +32,18 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures {
+        viewBinding = true
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
+    }
 }
 
 dependencies {
     implementation(project(":presentation:cats"))
+    implementation(project(":presentation:pokemons"))
     implementation(project(":presentation:home"))
     implementation(project(":data"))
     implementation(project(":domain"))
@@ -43,8 +52,9 @@ dependencies {
     implementation(libs.androidx.core.fragment.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
 
-    implementation(libs.dagger.runtime)
-    ksp(libs.dagger.compiler)
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.android.compiler)
+    implementation(libs.hilt.navigation.compose)
 
     implementation (libs.androidx.room.runtime)
     implementation (libs.androidx.room.ktx)

@@ -7,12 +7,14 @@ import com.example.domain.entities.Result
 import com.example.domain.usecase.GetCatsUseCase
 import com.example.main.mapper.mapToUIModel
 import com.example.main.model.CatUIModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
+@HiltViewModel
 class CatViewModel @Inject constructor(private val getCatUseCase: GetCatsUseCase) : ViewModel() {
     sealed class UIState {
         data class Success(val data: List<CatUIModel>, val retryClick: () -> Unit) : UIState()
