@@ -1,6 +1,5 @@
 package com.example.main.ui
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.entities.Result
@@ -33,7 +32,6 @@ class CatViewModel @Inject constructor(private val getCatUseCase: GetCatsUseCase
         getCatUseCase.invoke().onEach {
             when (it) {
                 is Result.Failure -> {
-                    Log.i("CatViewModel", "getData:Failure " + it.error)
                     _uiState.value = UIState.Error {
                         getData()
                     }

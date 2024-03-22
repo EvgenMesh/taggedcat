@@ -58,6 +58,11 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling)
 
     testImplementation(libs.junit)
+    testImplementation (libs.kotlin.test)
+    testImplementation (libs.mockk)
+    testImplementation (libs.kotlinx.coroutines.test)
     androidTestImplementation(libs.androidx.test.junit4)
-    androidTestImplementation(libs.androidx.test.espresso.core)
+    androidTestImplementation(platform(libs.androidx.compose.bom))
+    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
+    androidTestImplementation(libs.androidx.compose.ui.test.manifest)
 }

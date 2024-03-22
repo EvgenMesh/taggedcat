@@ -55,9 +55,4 @@ dependencies {
     implementation(libs.androidx.compose.material)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.ui.tooling)
-
-
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.test.junit4)
-    androidTestImplementation(libs.androidx.test.espresso.core)
 }
